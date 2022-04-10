@@ -1,9 +1,5 @@
 package com.techelevator.States;
 
-import com.techelevator.States.VendingMachineStates;
-import com.techelevator.States.hasMoneyState;
-import com.techelevator.States.noMoneyState;
-
 public class VendingMachine implements VendingMachineStates {
     public int cash = 0;
 
@@ -17,8 +13,8 @@ public class VendingMachine implements VendingMachineStates {
 
     // empty and loaded constructors
     public VendingMachine() {
-        noMoneyState = new noMoneyState(this);
-        hasMoneyState = new hasMoneyState(this);
+        noMoneyState = new NoMoneyState(this);
+        hasMoneyState = new HasMoneyState(this);
 
         vendingMachineStates = noMoneyState;
     }
@@ -50,7 +46,7 @@ public class VendingMachine implements VendingMachineStates {
         }
 
         @Override
-        public void selectProduct () {
+        public void selectProduct() {
             vendingMachineStates.selectProduct();
         }
 

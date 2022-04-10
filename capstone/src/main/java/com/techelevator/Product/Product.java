@@ -2,21 +2,27 @@ package com.techelevator.Product;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public abstract class Product {
     private String name;
     private int quantity = 5;
     private Double price;
 
+
+
+
+
     public Product(String name, Double price) {
         this.name = name;
         this.price = price;
 
     }
+
+    public Product() {
+
+    }
+
     public void dispensing(){
         this.quantity--;
     }

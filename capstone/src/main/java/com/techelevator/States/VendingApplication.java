@@ -1,4 +1,4 @@
-package com.techelevator;
+package com.techelevator.States;
 
 import com.techelevator.States.VendingMachine;
 
@@ -10,6 +10,7 @@ public class VendingApplication extends VendingMachine {
     public static void main(String[] args) {
 
         VendingMachine vendingMachine = new VendingMachine();
+
 
         vendingMachine.displayMainMenu();
         vendingMachine.feedMoney(5);

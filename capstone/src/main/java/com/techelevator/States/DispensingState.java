@@ -1,16 +1,16 @@
 package com.techelevator.States;
 
+import com.techelevator.Product.ProductGS;
+
 import java.util.Scanner;
 
-public class reportsAndLoggingState implements VendingMachineStates{
+public class DispensingState implements VendingMachineStates {
+ProductGS productGS = new ProductGS();
+VendingMachine vendingMachine;
 
-    Scanner scanner = new Scanner(System.in);
-    String buttonPushed = "";
 
-    VendingMachine vendingMachine;
-    public reportsAndLoggingState(VendingMachine vendingMachine) {
-        this.vendingMachine = vendingMachine;
-    }
+    Scanner input = new Scanner(System.in);
+
 
     @Override
     public void displayMainMenu() {
@@ -39,6 +39,10 @@ public class reportsAndLoggingState implements VendingMachineStates{
 
     @Override
     public void dispenseProduct() {
+        productGS.getInv().get(SelectionMadeState.getButtonPushed()).dispensing();
+        System.out.println("dispensing:" + productGS.getInv().get(SelectionMadeState.getButtonPushed()).getName()+ " ...in progress");
+        productGS.getMenu().get(SelectionMadeState.getButtonPushed()).sound();
+        vendingMachine.setVendingMachineState(vendingMachine.getHasMoneyState());
 
     }
 
@@ -49,12 +53,6 @@ public class reportsAndLoggingState implements VendingMachineStates{
 
     @Override
     public void finishTransaction() {
-
-        // TODO we need to give customer change, and make a log file and stuff
-        // after the change given, balance update, logging reports and all
-
-        // send user back to no money state to display the main menu
-        vendingMachine.setVendingMachineState(vendingMachine.noMoneyState);
 
     }
 
