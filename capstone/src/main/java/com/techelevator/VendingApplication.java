@@ -1,6 +1,8 @@
 package com.techelevator;
 
-public class VendingApplication extends VendingMachine{
+import com.techelevator.States.VendingMachine;
+
+public class VendingApplication extends VendingMachine {
 
     public int cash = 0;
 

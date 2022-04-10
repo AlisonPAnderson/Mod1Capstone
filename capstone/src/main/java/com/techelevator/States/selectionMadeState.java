@@ -1,16 +1,17 @@
-package com.techelevator;
+package com.techelevator.States;
 
 import java.util.Scanner;
 
-public class reportsAndLoggingState implements VendingMachineStates{
+public class selectionMadeState implements VendingMachineStates{
 
     Scanner scanner = new Scanner(System.in);
     String buttonPushed = "";
 
     VendingMachine vendingMachine;
-    public reportsAndLoggingState(VendingMachine vendingMachine) {
+    public selectionMadeState(VendingMachine vendingMachine) {
         this.vendingMachine = vendingMachine;
     }
+
 
     @Override
     public void displayMainMenu() {
@@ -19,6 +20,22 @@ public class reportsAndLoggingState implements VendingMachineStates{
 
     @Override
     public void displayPurchaseMenu() {
+        System.out.println ("(1) Feed Money");
+        System.out.println ("(2) Select Product");
+        System.out.println ("(3) Finish Transaction");
+
+        //TODO Do we want to dispense the products from selection made state?
+        if (buttonPushed.equals("1")) {
+
+
+        } else if (buttonPushed.equals("2") ) {
+
+
+        } else if (buttonPushed.equals("3")) {
+// sends machine to reports and logging where we can finish transaction, give change, log the sale etc
+            vendingMachine.setVendingMachineState(vendingMachine.reportsAndLoggingState);
+
+        }
 
     }
 
@@ -49,12 +66,6 @@ public class reportsAndLoggingState implements VendingMachineStates{
 
     @Override
     public void finishTransaction() {
-
-        // TODO we need to give customer change, and make a log file and stuff
-        // after the change given, balance update, logging reports and all
-
-        // send user back to no money state to display the main menu
-        vendingMachine.setVendingMachineState(vendingMachine.noMoneyState);
 
     }
 

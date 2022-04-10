@@ -1,4 +1,4 @@
-package com.techelevator;
+package com.techelevator.States;
 
 public interface VendingMachineStates {
     int cash = 0;

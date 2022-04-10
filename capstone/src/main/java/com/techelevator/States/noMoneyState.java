@@ -1,4 +1,6 @@
-package com.techelevator;
+package com.techelevator.States;
+
+import com.techelevator.Inventory;
 
 import java.util.Scanner;
 
@@ -28,7 +30,7 @@ public class noMoneyState implements VendingMachineStates {
 
         if (buttonPushed.equals("1")) {
         Inventory inventory = new Inventory();
-        inventory.printInvantory();
+      //  inventory.printInvantory();
         } else if (buttonPushed.equals("2")  ) {
             vendingMachine.displayPurchaseMenu();
         } else if (buttonPushed.equals("3") ) {
