@@ -1,7 +1,5 @@
 package com.techelevator.Product;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 
 public class ProductBuilder extends Product{
@@ -21,8 +19,8 @@ public class ProductBuilder extends Product{
    public static void main(String[] args) {
         ProductBuilder productBuilder = new ProductBuilder();
         ProductGS productGS = new ProductGS();
-        HashMap<String, Product> menu =  productGS.getMenu();
-        List<Product> listProduct = productGS.getListProduct();
+        Map<String, Product> menu =  productGS.getMenu();
+        List<Product> listProduct = productGS.getProductsList();
 
 
        menu.forEach((key, value) -> {System.out.println("ID: " + key + " name: " + value.getName() + " quantity: " +

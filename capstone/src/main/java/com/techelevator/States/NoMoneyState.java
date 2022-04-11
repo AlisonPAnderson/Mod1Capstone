@@ -65,15 +65,10 @@ public class NoMoneyState implements VendingMachineStates {
                 System.out.println("You have not inserted any money, I cannot finish this transaction.");
                 break;
         }
-
-
-
     }
 
     @Override
     public void feedMoney(int cash) {
-
-
 
     System.out.println("Please choose how much money to insert");
         System.out.println ("(1) $1.00");
