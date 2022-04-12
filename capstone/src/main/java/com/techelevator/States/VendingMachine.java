@@ -1,5 +1,7 @@
 package com.techelevator.States;
 
+import java.io.FileNotFoundException;
+
 public class VendingMachine implements VendingMachineStates {
     public int cash = 0;
 
@@ -10,6 +12,7 @@ public class VendingMachine implements VendingMachineStates {
     VendingMachineStates dispensingState;
     VendingMachineStates reportsAndLoggingState;
     VendingMachineStates vendingMachineStates;
+
 
     // empty and loaded constructors
     public VendingMachine() {
@@ -28,7 +31,7 @@ public class VendingMachine implements VendingMachineStates {
 
 
     @Override
-    public void displayMainMenu () {
+    public void displayMainMenu () throws FileNotFoundException {
         vendingMachineStates.displayMainMenu();
     }
 
@@ -37,12 +40,12 @@ public class VendingMachine implements VendingMachineStates {
     }
 
     @Override
-        public void feedMoney ( int cash){
-            vendingMachineStates.feedMoney(5);
+        public void feedMoney (){
+            vendingMachineStates.feedMoney();
         }
 
         @Override
-        public void returnMoney ( int cash){
+        public void returnMoney ( ){
         }
 
         @Override

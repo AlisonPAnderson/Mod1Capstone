@@ -1,14 +1,16 @@
 package com.techelevator.States;
 
+import java.io.FileNotFoundException;
+
 public interface VendingMachineStates {
     int cash = 0;
-    void displayMainMenu ();
+    void displayMainMenu () throws FileNotFoundException;
 
     void displayPurchaseMenu();
 
-    void feedMoney (int cash);
+    void feedMoney ();
 
-    void returnMoney(int cash);
+    void returnMoney();
 
     void selectProduct ();
 

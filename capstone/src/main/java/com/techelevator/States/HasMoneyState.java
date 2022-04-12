@@ -1,8 +1,10 @@
 package com.techelevator.States;
 
 
+import com.techelevator.Product.Product;
 import com.techelevator.Product.ProductGS;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class HasMoneyState implements VendingMachineStates{
@@ -14,7 +16,6 @@ public class HasMoneyState implements VendingMachineStates{
     ProductGS productGS = new ProductGS();
 
 
-
     public HasMoneyState(VendingMachine vendingMachine) {
         this.vendingMachine = vendingMachine;
     }
@@ -24,23 +25,23 @@ public class HasMoneyState implements VendingMachineStates{
 
     @Override
     public void displayMainMenu() {
-        System.out.println ("(1) Display Vending Machine Items");
-        System.out.println ("(2) Purchase");
-        System.out.println ("(3) Exit");
-        displayMenuButtonPushed = scanner.nextLine();
-
-
-        switch (displayMenuButtonPushed) {
-            case "1":
-                ProductGS productGS = new ProductGS();
-                productGS.printInventory();                 // prints inventory
-                break;
-            case "2":
-                vendingMachine.displayPurchaseMenu();
-                break;
-            case "3":
-                System.exit(0);
-        }
+//        System.out.println ("(1) Display Vending Machine Items");
+//        System.out.println ("(2) Purchase");
+//        System.out.println ("(3) Exit");
+//        displayMenuButtonPushed = scanner.nextLine();
+//
+//
+//        switch (displayMenuButtonPushed) {
+//            case "1":
+//                ProductGS productGS = new ProductGS();
+//                productGS.printInventory(inventory1);                 // prints inventory
+//                break;
+//            case "2":
+//                vendingMachine.displayPurchaseMenu();
+//                break;
+//            case "3":
+//                System.exit(0);
+//        }
 
     }
 
@@ -53,7 +54,7 @@ public class HasMoneyState implements VendingMachineStates{
         switch (purchaseMenuButtonPushed) {
             case "1":
                 // TODO logic how the machine accepts (more) money
-                vendingMachine.feedMoney(5);   // "Select Product send user to feed money method
+                vendingMachine.feedMoney();   // "Select Product send user to feed money method
                 break;
 
             case "2":
@@ -67,17 +68,18 @@ public class HasMoneyState implements VendingMachineStates{
     }
 
     @Override
-    public void feedMoney(int cash) {
+    public void feedMoney() {
 
     }
 
     @Override
-    public void returnMoney(int cash) {
+    public void returnMoney() {
 
     }
 
     @Override
     public void selectProduct() {
+        Map menu = productGS.getMenu();
         productGS.printInventory();
         System.out.println("Please enter a valid product ID: ");
         selectProductIDButtonPushed = scanner.nextLine();

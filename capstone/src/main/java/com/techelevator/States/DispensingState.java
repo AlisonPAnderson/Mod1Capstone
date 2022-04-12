@@ -23,12 +23,12 @@ Scanner scanner = new Scanner(System.in);
     }
 
     @Override
-    public void feedMoney(int cash) {
+    public void feedMoney() {
 
     }
 
     @Override
-    public void returnMoney(int cash) {
+    public void returnMoney() {
 
     }
 
@@ -39,8 +39,8 @@ Scanner scanner = new Scanner(System.in);
 
     @Override
     public void dispenseProduct() {
-        productGS.getInv().get(selectProductIDButtonPushed).dispensing();
-        System.out.println("dispensing:" + productGS.getInv().get(selectProductIDButtonPushed).getName()+ " ...in progress");
+        productGS.getMenu().get(selectProductIDButtonPushed).dispensing();
+        System.out.println("dispensing:" + productGS.getMenu().get(selectProductIDButtonPushed).getName()+ " ...in progress");
         productGS.getMenu().get(selectProductIDButtonPushed).sound();
         System.out.println("Would you like to make another selection? (Y/N)");
         String anotherSelection = scanner.nextLine();

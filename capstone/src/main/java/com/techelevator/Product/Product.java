@@ -10,17 +10,12 @@ public abstract class Product {
     private Double price;
 
 
-
-
-
     public Product(String name, Double price) {
         this.name = name;
         this.price = price;
-
     }
 
     public Product() {
-
     }
 
     public void dispensing(){
@@ -53,6 +48,3 @@ public abstract class Product {
 
     public abstract void sound();
 }
-
-
-

@@ -17,12 +17,12 @@ public class selectionOutOfStockState implements VendingMachineStates{
     }
 
     @Override
-    public void feedMoney(int cash) {
+    public void feedMoney() {
 
     }
 
     @Override
-    public void returnMoney(int cash) {
+    public void returnMoney() {
 
     }
 
