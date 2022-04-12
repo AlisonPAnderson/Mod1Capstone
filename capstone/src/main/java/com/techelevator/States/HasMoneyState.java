@@ -25,23 +25,6 @@ public class HasMoneyState implements VendingMachineStates{
 
     @Override
     public void displayMainMenu() {
-//        System.out.println ("(1) Display Vending Machine Items");
-//        System.out.println ("(2) Purchase");
-//        System.out.println ("(3) Exit");
-//        displayMenuButtonPushed = scanner.nextLine();
-//
-//
-//        switch (displayMenuButtonPushed) {
-//            case "1":
-//                ProductGS productGS = new ProductGS();
-//                productGS.printInventory(inventory1);                 // prints inventory
-//                break;
-//            case "2":
-//                vendingMachine.displayPurchaseMenu();
-//                break;
-//            case "3":
-//                System.exit(0);
-//        }
 
     }
 
@@ -53,7 +36,7 @@ public class HasMoneyState implements VendingMachineStates{
         purchaseMenuButtonPushed = scanner.nextLine();
         switch (purchaseMenuButtonPushed) {
             case "1":
-                // TODO logic how the machine accepts (more) money
+
                 vendingMachine.feedMoney();   // "Select Product send user to feed money method
                 break;
 
@@ -83,22 +66,26 @@ public class HasMoneyState implements VendingMachineStates{
         productGS.printInventory();
         System.out.println("Please enter a valid product ID: ");
         selectProductIDButtonPushed = scanner.nextLine();
-
-
-        if (!(productGS.getMenu().containsKey(selectProductIDButtonPushed))) {
-            System.out.println("You have entered an invalid code.");
-            productGS.printInventory();
-            System.out.println("Please enter a valid product ID: ");
-
+        if (productGS.getMenu().containsKey(selectProductIDButtonPushed)) {
+            System.out.println("contains key $%$%&#%$^&#%^*");
+            changeState();
         } else if (productGS.getMenu().get(selectProductIDButtonPushed).getQuantity() <= 0) {
-            vendingMachine.setVendingMachineState(vendingMachine.selectionOutOfStockState);
-        } else {
-            vendingMachine.setVendingMachineState(vendingMachine.getDispensingState());
+            // TODO test out of stock
+            System.out.println("I'm sorry, that selection is out of stock.");
+            displayPurchaseMenu();
+        } else   {
+            System.out.println("You have entered an invalid code.  Please enter a valid product ID");
+            productGS.printInventory();
+
         }
 
 
 
+    }
 
+    public void changeState() {
+        System.out.println("SRFGHSRFGNSRTN");
+        vendingMachine.setVendingMachineState(vendingMachine.getDispensingState());
     }
     @Override
     public void dispenseProduct() {

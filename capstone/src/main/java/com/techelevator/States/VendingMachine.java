@@ -18,6 +18,9 @@ public class VendingMachine implements VendingMachineStates {
     public VendingMachine() {
         noMoneyState = new NoMoneyState(this);
         hasMoneyState = new HasMoneyState(this);
+        dispensingState = new DispensingState(this);
+        reportsAndLoggingState = new ReportsAndLoggingState(this);
+
 
         vendingMachineStates = noMoneyState;
     }
@@ -36,7 +39,7 @@ public class VendingMachine implements VendingMachineStates {
     }
 
     @Override
-    public void displayPurchaseMenu() {
+    public void displayPurchaseMenu() { vendingMachineStates.displayPurchaseMenu();
     }
 
     @Override
@@ -54,7 +57,7 @@ public class VendingMachine implements VendingMachineStates {
         }
 
     @Override
-    public void dispenseProduct() {
+    public void dispenseProduct() { vendingMachineStates.dispenseProduct();
 
     }
 

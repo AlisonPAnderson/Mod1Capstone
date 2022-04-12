@@ -18,6 +18,8 @@ public class VendingApplication extends VendingMachine {
         vendingMachine.displayMainMenu();
         vendingMachine.feedMoney();
         vendingMachine.selectProduct();
+        vendingMachine.dispenseProduct();
+
 
 
     }

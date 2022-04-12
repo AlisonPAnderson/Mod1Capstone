@@ -8,11 +8,13 @@ public abstract class Product {
     private String name;
     private int quantity = 5;
     private Double price;
+    private String type;
 
 
     public Product(String name, Double price) {
         this.name = name;
         this.price = price;
+
     }
 
     public Product() {
@@ -45,6 +47,10 @@ public abstract class Product {
     public void setPrice(Double price) {
         this.price = price;
     }
+
+    public void setType(String type) { this.type = type; }
+
+    public String getType() { return type; }
 
     public abstract void sound();
 }

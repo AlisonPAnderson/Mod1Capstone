@@ -8,7 +8,7 @@ import java.util.*;
 
 public class ProductGS {
 
-    private HashMap<String, Product> menu = new HashMap<>();
+    private TreeMap<String, Product> menu = new TreeMap<>();
     private List<Product> listProduct = new ArrayList<>();
     private Map<String, Product> inv = new HashMap<>();
     private int line = 0;
@@ -78,11 +78,11 @@ public class ProductGS {
                 value.getQuantity()  );});
     }
 
-    public HashMap<String, Product> getMenu() {
+    public TreeMap<String, Product> getMenu() {
         return menu;
     }
 
-    public void setMenu(HashMap<String, Product> menu) {
+    public void setMenu(TreeMap<String, Product> menu) {
         this.menu =  menu;
     }
 
