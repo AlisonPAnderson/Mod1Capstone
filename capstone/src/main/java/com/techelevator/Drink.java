@@ -9,8 +9,8 @@ public class Drink extends Product {
     }
 
     @Override
-    public void sound() {
-        System.out.println("Glug, Glug, Yum!");
+    public String sound(){
+       return "Glug, Glug, Yum!";
     }
 
 }

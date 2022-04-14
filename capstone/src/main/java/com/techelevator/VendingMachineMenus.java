@@ -1,9 +1,17 @@
 package com.techelevator;
 
 import com.techelevator.view.Menu;
-import com.techelevator.view.VendingMachineFunctions;
+
+import java.io.FileNotFoundException;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class VendingMachineMenus {
+
+
+//    private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
+//    private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
+//    private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE };
 
 
     private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
@@ -26,14 +34,33 @@ public class VendingMachineMenus {
     private static final String MORE_MONEY_YES = "Y";
     private static final String MORE_MONEY_NO = "N";
 
+    private String selectedProductButton = "";
+
     private Menu menu;
     VendingMachineFunctions v1 = new VendingMachineFunctions();
+    ProductGS productGS = new ProductGS();
+    Scanner input = new Scanner(System.in);
 
-    public VendingMachineMenus(Menu menu) {
+    public VendingMachineMenus(Menu menu) throws FileNotFoundException {
         this.menu = menu;
     }
 
-    public void feedMoney() {
+
+    public void run() throws FileNotFoundException {
+        while (true) {
+            String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
+
+            if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
+
+                v1.productObj.printSnackChoices();
+                // display vending machine items
+            } else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
+                displayPurchaseMenu();
+
+            }
+        }
+    }
+    public void feedMoney() throws FileNotFoundException {
 
         while (true) {
             String feedMenu = (String) menu.getChoiceFromOptions(FEED_MONEY_OPTIONS);
@@ -50,27 +77,22 @@ public class VendingMachineMenus {
         }
     }
 
-    public void displayPurchaseMenu() {
+    public void displayPurchaseMenu() throws FileNotFoundException {
         while (true) {
-
             String purchaseMenu = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
             if (purchaseMenu.equals(PURCHASE_MENU_FEED_MONEY)) {
                 feedMoney();
             } else if (purchaseMenu.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
-                //TODO print vending machine items (again)
-                //TODO dispense, sound, update balance
+
+                v1.productObj.printSnackChoices();
+                selectedProductButton = input.nextLine().toUpperCase(Locale.ROOT);
+                v1.selectProduct(selectedProductButton);
+
             } else if (purchaseMenu.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
-                // TODO Finish transaction update balance
-                //TODO give change
-                //TODO logging
+                v1.finishTransaction();
             }
         }
     }
-
-
-
-
-
 
 }
 

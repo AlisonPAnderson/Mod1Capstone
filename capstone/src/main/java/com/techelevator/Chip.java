@@ -9,8 +9,8 @@ public class Chip extends Product {
     }
 
     @Override
-    public void sound() {
-        System.out.println("Crunch, Crunch, Yum!");
+    public String sound() {
+        return "Crunch, Crunch, Yum!";
 
     }
 

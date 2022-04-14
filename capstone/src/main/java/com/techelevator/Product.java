@@ -1,8 +1,6 @@
 package com.techelevator;
 
-import com.techelevator.ProductGS;
-
-public abstract  class Product extends ProductGS {
+public abstract  class Product  {
     private String name;
     private int quantity = 5;
     private Double price;
@@ -40,5 +38,5 @@ public abstract  class Product extends ProductGS {
         this.price = price;
     }
 
-    public abstract void sound();
+    public abstract String sound();
 }

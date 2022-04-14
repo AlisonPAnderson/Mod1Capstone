@@ -1,6 +1,8 @@
 package com.techelevator;
 //import com.techelevator.DispensingState;
 
+import com.techelevator.Product;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -11,13 +13,9 @@ public class ProductGS {
             "-capstone\\capstone\\vendingmachine.csv";
     //private Map<String,Product> snackChoices;
     Map<String, Product> snackChoices = new TreeMap<>();
-    private List<Product> productsList;
-    double amountRemaining = 0.00;
     int line=0;
-    int quantityRemaining = 0;
-    String productID = "";
-    String productName = "";
-    double productPrice = 00.00;
+    private List<Product> productsList;
+
 
 
     public Map<String,Product> buildMenu() throws FileNotFoundException {
@@ -68,8 +66,14 @@ public class ProductGS {
     }
 
     public void printSnackChoices() throws FileNotFoundException {
-        buildMenu();
-        for (Map.Entry<String,Product> item: snackChoices.entrySet()){
+        double amountRemaining = 0.00;
+        int quantityRemaining = 0;
+        String productID = "";
+        String productName = "";
+        double productPrice = 00.00;
+
+       /// buildMenu();
+        for (Map.Entry<String,Product> item: this.snackChoices.entrySet()){
 
             quantityRemaining = item.getValue().getQuantity();
             productID = item.getKey();

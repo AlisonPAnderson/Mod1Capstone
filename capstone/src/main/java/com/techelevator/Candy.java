@@ -8,7 +8,7 @@ public class Candy extends Product {
     }
 
     @Override
-    public void sound() {
-        System.out.println("Munch, Munch, Yum!");
+    public String sound() {
+        return "Munch, Munch, Yum!";
     }
 }
