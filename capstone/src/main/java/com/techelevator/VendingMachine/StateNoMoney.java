@@ -3,50 +3,59 @@ package com.techelevator.VendingMachine;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class NoMoneyState extends VendingMachineAbstract {
+public class StateNoMoney extends AbstractVendingMachine {
     private String purchaseMenuButtonPushed = "";
     private String mainMenuButtonPushed = "";
     private String selectProductIDButtonPushed = "";
     private int currentMoneyProvided = 0;
     private Scanner input = new Scanner(System.in);
+
     ContextVendingMachine myMachine;
 
-    public NoMoneyState(ContextVendingMachine myMachine) {
+    public StateNoMoney(ContextVendingMachine contextVendingMachine) {
         this.myMachine = myMachine;
     }
 
+    public StateNoMoney() {
+    }
+
     @Override
-    public String getStateDescription() {
-        return "before you have inserted cash";
+    public void feedMoney() {
+
     }
 
-    public void displayMainMenu () throws FileNotFoundException {
-        System.out.println("from no money");
-        while (true){   // user will still get this menu until he presses 2 or 3.
+    //
+//    @Override
+//    public String getStateDescription() {
+//        return "before you have inserted cash";
+//    }
 
-            System.out.println ("(1) Display Vending Machine Items");
-            System.out.println ("(2) Purchase");
-            System.out.println ("(3) Exit");
-            mainMenuButtonPushed = input.nextLine();
+//
+//    public void displayMainMenu () throws FileNotFoundException {
+//
+//            PrintMenus.printMainMenu();                        // print main menu
+//            mainMenuButtonPushed = input.nextLine();
+//            if (mainMenuButtonPushed.equals("1")){
+//              myMachine.productsObj.buildMenu();  // Display Products
+//            }
+//            else if(mainMenuButtonPushed.equals("2")){
+//                PrintMenus.printPurchaseMenu();
+//
+//            }
+//            else{  System.out.println("exiting, thanks for!");
+//                System.exit(0);
+//
+//            }
+//
+//        }
 
-            if (mainMenuButtonPushed.equals("1")){
-                myMachine.displayItems();
-            }
-            else if(mainMenuButtonPushed.equals("2")){
-                this.displayPurchaseMenu();
-                break;
-            }
-            else{  System.out.println("exiting, thanks for!");
-                System.exit(0);
-                break;
-            }
-        }
+
+    public void displayPurchaseMenu() {
+     PrintMenus.printPurchaseMenu();
+
+     String purchaseMenuButtonPushed = input.hasNextLine();
+
     }
-
-
-
-
-
 
 
 

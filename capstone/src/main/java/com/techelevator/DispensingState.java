@@ -6,7 +6,7 @@
 //
 //public class DispensingState implements VendingMachineStates{
 //    VendingMachine vendingMachine;
-//    HasMoneyState hasMoneyState = new HasMoneyState();
+//    StateHasMoney hasMoneyState = new StateHasMoney();
 //    ProductGS dispensingObj = new ProductGS();
 //    private String purchaseMenuButtonPushed = "";
 //    private String mainMenuButtonPushed = "";

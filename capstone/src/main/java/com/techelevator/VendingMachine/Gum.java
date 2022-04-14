@@ -1,2 +1,4 @@
-package com.techelevator.VendingMachine;public class Gum {
+package com.techelevator.VendingMachine;
+
+public class Gum {
 }

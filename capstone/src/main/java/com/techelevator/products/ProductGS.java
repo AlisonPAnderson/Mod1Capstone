@@ -1,7 +1,5 @@
 package com.techelevator.products;
 //import com.techelevator.DispensingState;
-import com.techelevator.NoMoneyState;
-import com.techelevator.VendingMachine;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,7 +19,8 @@ public class ProductGS {
        this.menu =new TreeMap<>();
        this.productsList=new ArrayList<>();
       // File inputFile = new File("C:\\Users\\khaled\\Desktop\\capstone\\module-1-capstone\\capstone\\vendingmachine.csv");
-        File inputFile = new File("C:\\Users\\Alison\\Downloads\\capstone-light\\capstone\\vendingmachine.csv");
+        File inputFile = new File("C:\\Users\\Alison\\Desktop\\MeritAmerica\\repos\\PairProgramming\\Capstone\\module" +
+                "-1-capstone\\capstone\\vendingmachine.csv");
 
        try(Scanner input=new Scanner(inputFile)){
            while (input.hasNextLine()){

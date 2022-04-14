@@ -1,4 +1,4 @@
-package com.techelevator;
+package com.techelevator.States;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -9,7 +9,7 @@ public class NoMoneyState implements VendingMachineStates {
     private String mainMenuButtonPushed = "";
     private String selectProductIDButtonPushed = "";
     private int currentMoneyProvided = 0;
-    Scanner scanner = new Scanner(System.in);
+
     private Scanner input = new Scanner(System.in);
 
     public NoMoneyState(VendingMachine myMachine){
@@ -20,7 +20,7 @@ public class NoMoneyState implements VendingMachineStates {
     public void displayMainMenu () throws FileNotFoundException {
         System.out.println("from no money");
         while (true){   // user will still get this menu until he presses 2 or 3.
-
+// Menu.printMenu()
             System.out.println ("(1) Display Vending Machine Items");
             System.out.println ("(2) Purchase");
             System.out.println ("(3) Exit");
@@ -41,44 +41,79 @@ public class NoMoneyState implements VendingMachineStates {
     }
     @Override
     public void displayPurchaseMenu() throws FileNotFoundException {
-        System.out.println("Purchase Menu \n ********************");
-        System.out.println ("(1) Feed Money \n (2) Select Product \n (3) Finish Transaction");
+        System.out.println("we are running from No money state");
+
+        System.out.println ("(1) Feed Money");
+        System.out.println ("(2) Select Product");
+        System.out.println ("(3) Finish Transaction");
         String purchaseMenuButtonPushed = input.nextLine();
         switch (purchaseMenuButtonPushed) {
             case "1":
                 vendingMachine.feedMoney();
                 break;
             case "2":
+                System.out.println("we are in no money");
                 if (vendingMachine.getCurrentMoney()>=0.75){
+                    System.out.println("we are going to has money");
                     vendingMachine.setVendingMachineState(vendingMachine.getYesHasMoneyState());
                     vendingMachine.vendingMachineState.selectProduct();
-             }
+                }
                 else {
                     this.selectProduct();
                 }
                 break;
             case "3":
-                System.out.println("Would you like to finish this transaction? \n (Y) Yes, I would like to finish my transaction.  \n (N) No, Please take me back to the main menu.");
-                String YorN = scanner.nextLine();
-                if (!YorN.equalsIgnoreCase("Y") && !YorN.equalsIgnoreCase("N)") ) {
-                System.out.println("Invalid Entry");
-                displayPurchaseMenu();
-                } else if (YorN.equalsIgnoreCase("N")) {
-                    displayPurchaseMenu();
-                  //  vendingMachine.setVendingMachineState(vendingMachine.getYesHasMoneyState());
-                } else {
+                if (vendingMachine.getCurrentMoney()>=0.75){
+                    vendingMachine.setVendingMachineState(vendingMachine.getYesHasMoneyState());
+                }
+                else {
                     this.finishTransaction();
                 }
                 break;
         }
     }
 
+//    public void displayPurchaseMenu() throws FileNotFoundException {
+//        System.out.println("   Purchase Menu \n ********************");
+//        System.out.println ("(1) Feed Money\n(2) Select Product\n3) Finish Transaction");
+//        String purchaseMenuButtonPushed = input.nextLine();
+//        switch (purchaseMenuButtonPushed) {
+//            case "1":
+//                vendingMachine.setVendingMachineState(vendingMachine.getYesHasMoneyState());
+//                vendingMachine.feedMoney();
+//                break;
+//            case "2":
+//                if (vendingMachine.getCurrentMoney()>=0.75){
+//                    vendingMachine.setVendingMachineState(vendingMachine.getYesHasMoneyState());
+//                    vendingMachine.vendingMachineState.selectProduct();
+//             }
+//                else {
+//                    this.selectProduct();
+//                }
+//                break;
+//            case "3":
+//                System.out.println("Would you like to finish this transaction? \n (Y) Yes, I would like to finish my transaction.  \n (N) No, Please take me back to the main menu.");
+//                String YorN = input.nextLine();
+//                if (!YorN.equalsIgnoreCase("Y") && !YorN.equalsIgnoreCase("N)") ) {
+//                System.out.println("Invalid Entry");
+//                displayPurchaseMenu();
+//                } else if (YorN.equalsIgnoreCase("N")) {
+//                    displayPurchaseMenu();
+//                  //  vendingMachine.setVendingMachineState(vendingMachine.getYesHasMoneyState());
+//                } else if(YorN.equalsIgnoreCase("Y")) {
+//                    finishTransaction();
+//                }
+//                break;
+//        }
+//    }
+
 
 
 
     @Override
-    public void selectProduct() {
+    public void selectProduct() throws FileNotFoundException {
         System.out.println("You have not inserted any money, you cannot select a product.");
+        displayPurchaseMenu();
     }
 
     @Override

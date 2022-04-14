@@ -1,10 +1,11 @@
-package com.techelevator;
+package com.techelevator.States;
 
+import com.techelevator.Currency;
 import com.techelevator.products.ProductGS;
 
 import java.io.FileNotFoundException;
 
-public class ReportsAndLoggingState implements VendingMachineStates{
+public class ReportsAndLoggingState implements VendingMachineStates {
     VendingMachine vendingMachine;
     private String purchaseMenuButtonPushed = "";
     private String mainMenuButtonPushed = "";
@@ -38,9 +39,10 @@ public class ReportsAndLoggingState implements VendingMachineStates{
 
     @Override
     public void finishTransaction() {
+        System.out.println("reports - finish transaction" );
         if (vendingMachine.getCurrentMoney() >= .05) {
             this.returnMoney();
-        } else if(vendingMachine.getCurrentMoney() == 0) {
+        } else if(state.getCurrentMoney() == 0) {
             System.out.println("You do not have any change.");
             this.audit();
         }

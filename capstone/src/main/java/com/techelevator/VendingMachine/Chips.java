@@ -1,2 +1,4 @@
-package com.techelevator.VendingMachine;public class Chips {
+package com.techelevator.VendingMachine;
+
+public class Chips {
 }
