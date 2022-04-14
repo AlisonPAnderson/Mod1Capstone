@@ -25,15 +25,10 @@ public class Menu {
 	}
 
 	private Object getChoiceFromUserInput(Object[] options) {
-
 		Object choice = null;
 		String userInput = in.nextLine();
 		try {
 			int selectedOption = Integer.valueOf(userInput);
-			int hiddenOption = Integer.valueOf(userInput);
-			if (hiddenOption == 4) {
-				System.out.println("Hidden Option");
-			}
 			if (selectedOption > 0 && selectedOption <= options.length) {
 				choice = options[selectedOption - 1];
 			}

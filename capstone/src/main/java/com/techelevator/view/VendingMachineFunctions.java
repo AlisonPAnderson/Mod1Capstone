@@ -6,7 +6,7 @@ public class VendingMachineFunctions {
     private double currentMoneyProvided = 00.00;
     Scanner input = new Scanner(System.in);
 
-    public void feedMoney(int moneyChoice) {
+    public void addToCustomerAccount(int moneyChoice) {
         switch (moneyChoice) {
             case (1):
                 setCurrentMoneyProvided(1.00 + getCurrentMoneyProvided());
@@ -20,10 +20,7 @@ public class VendingMachineFunctions {
         }
 
         System.out.printf("%s %.2f%n",  "Your balance is $", getCurrentMoneyProvided());
-//        switch(moreCashYorN) {
-//            case(moreCash.equalsIgnoreCase("Y")) :
-//
-//        }
+
 
 
     }
