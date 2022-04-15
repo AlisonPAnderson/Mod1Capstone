@@ -1,4 +1,4 @@
-package com.techelevator;
+package com.techelevator.Product;
 
 public abstract  class Product  {
     private String name;

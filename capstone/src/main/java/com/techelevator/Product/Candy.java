@@ -1,6 +1,4 @@
-package com.techelevator;
-
-import com.techelevator.Product;
+package com.techelevator.Product;
 
 public class Candy extends Product {
     public Candy(String name, Double price) {

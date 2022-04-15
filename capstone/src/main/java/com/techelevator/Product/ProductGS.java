@@ -1,7 +1,7 @@
-package com.techelevator;
+package com.techelevator.Product;
 //import com.techelevator.DispensingState;
 
-import com.techelevator.Product;
+import com.techelevator.Product.Product;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -72,7 +72,7 @@ public class ProductGS {
         String productName = "";
         double productPrice = 00.00;
 
-       /// buildMenu();
+        /// buildMenu();
         for (Map.Entry<String,Product> item: this.snackChoices.entrySet()){
 
             quantityRemaining = item.getValue().getQuantity();
@@ -126,4 +126,4 @@ public class ProductGS {
 //
 
 
-    }
+}
