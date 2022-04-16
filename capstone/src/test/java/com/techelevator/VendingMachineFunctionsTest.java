@@ -1,4 +1,6 @@
 package com.techelevator;
 
-public class VendingMachineFunctionsTest {
+import java.io.FileNotFoundException;
+
+public class VendingMachineFunctionsTest extends VendingMachineFunctions {
 }

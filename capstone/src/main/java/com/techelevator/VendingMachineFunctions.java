@@ -134,20 +134,17 @@
 //
 //
 //}
-
-
-
 package com.techelevator;
 
 //import com.techelevator.SalesReports.Sales;
 
 import com.techelevator.Product.Product;
 import com.techelevator.Product.ProductGS;
-
 import java.io.FileNotFoundException;
 import java.util.Map;
 
 public class VendingMachineFunctions {
+
     private double Total_Sales= 0.00;
     private double currentMoneyProvided = 00.00;
     private int quantity=0;
@@ -155,11 +152,9 @@ public class VendingMachineFunctions {
     ProductGS productObj = new ProductGS();
     private Map<String, Product> vendingMachineMap= productObj.buildMenu();
 
-    public Map<String, Product> getVendingMachineMap() {
-        return vendingMachineMap;
-    }
 
-    public VendingMachineFunctions() throws FileNotFoundException {
+
+    public VendingMachineFunctions()  {
     }
 
 
@@ -182,56 +177,44 @@ public class VendingMachineFunctions {
 
 
     public void selectProduct(String itemChoiceFromUser)  {
-
         String logMessage = "";
-        //check if the item id is valid (check if "itemChoiceFromUser" is a valid key (item id ex:"A1")
-        if (!(this.vendingMachineMap.containsKey(itemChoiceFromUser))){
 
+        if (!(this.vendingMachineMap.containsKey(itemChoiceFromUser))){    //check if the item id is valid (check if "itemChoiceFromUser" is a valid key (item id ex:"A1")
             System.out.println("Sorry! " + itemChoiceFromUser + " is not a valid item Id");
         }
-
-        else {//// the item id entered is valid
-            /// check if the machine has enough money to buy the selected item
-            if (!(this.getCurrentMoneyProvided() >= this.vendingMachineMap.get(itemChoiceFromUser).getPrice())){
-                System.out.println("Sorry! you don't have enough Money, Please feed the machine");
+        else {
+            if (!(this.getCurrentMoneyProvided() >= this.vendingMachineMap.get(itemChoiceFromUser).getPrice())){  //// the item id entered is valid
+                System.out.println("Sorry! you don't have enough Money, Please feed the machine");                  /// check if the machine has enough money to buy the selected item
             }
-            /// check if the item is available
-            else if (!(this.vendingMachineMap.get(itemChoiceFromUser).getQuantity()>=1)){
 
+            else if (!(this.vendingMachineMap.get(itemChoiceFromUser).getQuantity()>=1)){                           /// check if the item is available
                 System.out.println("Sorry! out of stock, Please choose another product");
             }
-            /// the id is valid + the machine has money + the item is available {the purchase is happening }
-            else {
-
+            else {                                                                                                   /// valid ID/Item in stock/money > 0 {the purchase is happening }
                 String productID = itemChoiceFromUser;
                 String productName = this.vendingMachineMap.get(itemChoiceFromUser).getName();
                 String productType = this.vendingMachineMap.get(itemChoiceFromUser).getClass().getSimpleName();
                 String productSound = this.vendingMachineMap.get(itemChoiceFromUser).sound();
                 double productPrice = this.vendingMachineMap.get(itemChoiceFromUser).getPrice();
 
+                logMessage += " - " + itemChoiceFromUser+ " " + productName + " " + "---" +  " $" + this.getCurrentMoneyProvided();    // LOG MESSAGE for audit
 
-
-                logMessage += " - " + itemChoiceFromUser+ " " + productName + " " + "---" +  " $" + this.getCurrentMoneyProvided();    ///item id + machine balance before the purchase
-                /// reducing quantity
-                this.vendingMachineMap.get(itemChoiceFromUser).reduceQuantity();
+                this.vendingMachineMap.get(itemChoiceFromUser).reduceQuantity();                                         /// reducing quantity
                 this.setCurrentMoneyProvided(this.getCurrentMoneyProvided() - productPrice);      /// spending money ( current machine balance - the price of the selected item
-                this.addToTotalSales(productPrice);      /// storing the amount to the total sales
+                this.addToTotalSales(productPrice);                                                /// storing the amount to the total sales
 
-                // a message to thank the user & sound
-                System.out.printf("%s %.2f %s %.2f \n \n %s %s %s %s \n %s", "The total for all of your items is: $", this.getTotalSales(), "      Your remaining balance is: $", this.getCurrentMoneyProvided(), "Dispensing the item: ", productName , "-  Enjoy your ", productType, productSound);
+                System.out.printf("%s %.2f %s %.2f \n \n %s %s %s %s \n %s",
+                        "The total for all of your items is: $", this.getTotalSales(),
+                        "      Your remaining balance is: $", this.getCurrentMoneyProvided(),
+                        "Dispensing the item: ", productName , "-  Enjoy your ", productType, productSound);
                 //      System.out.println("Your total was: " + productPrice + "     Your remaining balance is: " + );
 
-                //////////////////////
-                /// log + reports
-                ////////////////////
-
-                ///log item id + old balance + new balance
-                ReportsAndLogging.log(logMessage+" $"+ this.getCurrentMoneyProvided());
+                ReportsAndLogging.log(logMessage+" $"+ this.getCurrentMoneyProvided());                             ///log item id + old balance + new balance
             }
         }
+///selectProduct method end
 
-
-    }///selectProduct method end
+    }
 
 
     public void finishTransaction(){
@@ -273,7 +256,9 @@ public class VendingMachineFunctions {
 //
 //
 //    }
-
+    public Map<String, Product> getVendingMachineMap() {
+    return vendingMachineMap;
+}
     public double getTotalSales(){
         return this.Total_Sales;
     }
@@ -291,6 +276,9 @@ public class VendingMachineFunctions {
     public void setBalanceToZero(){
         this.currentMoneyProvided=00.00;
     }
+
+
+ 
 
 
 

@@ -9,13 +9,6 @@ import java.util.Scanner;
 
 public class VendingMachineMenus {
 
-
-
-//    private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
-//    private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
-//    private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE };
-
-
     private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
     private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
     private static final String MAIN_MENU_EXIT = "Exiting, Thank you.";
@@ -44,14 +37,14 @@ public class VendingMachineMenus {
     ProductGS productGS = new ProductGS();
     Scanner input = new Scanner(System.in);
 
-    public VendingMachineMenus(Menu menu) throws FileNotFoundException {
+    public VendingMachineMenus(Menu menu) {
         this.menu = menu;
     }
 
-    public VendingMachineMenus() throws FileNotFoundException {
+    public VendingMachineMenus()  {
     }
 
-    public void run() throws FileNotFoundException {
+    public void run()  {
         while (true) {
             String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
             if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
@@ -64,7 +57,7 @@ public class VendingMachineMenus {
             }
         }
     }
-    public void feedMoney() throws FileNotFoundException {
+    public void feedMoney()  {
 
         while (true) {
             String feedMenu = (String) menu.getChoiceFromOptions(FEED_MONEY_OPTIONS);
@@ -81,7 +74,7 @@ public class VendingMachineMenus {
         }
     }
 
-    public void displayPurchaseMenu() throws FileNotFoundException {
+    public void displayPurchaseMenu()  {
         while (true) {
             String purchaseMenu = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
             if (purchaseMenu.equals(PURCHASE_MENU_FEED_MONEY)) {

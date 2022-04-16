@@ -18,7 +18,7 @@ public class ProductGS {
 
 
 
-    public Map<String,Product> buildMenu() throws FileNotFoundException {
+    public Map<String,Product> buildMenu()  {
         // this.snackChoices =new TreeMap<>();
         this.productsList=new ArrayList<>();
         File inputFile = new File(fileName);
@@ -65,7 +65,7 @@ public class ProductGS {
         return snackChoices;
     }
 
-    public void printSnackChoices() throws FileNotFoundException {
+    public void printSnackChoices()  {
         double amountRemaining = 0.00;
         int quantityRemaining = 0;
         String productID = "";
@@ -73,15 +73,17 @@ public class ProductGS {
         double productPrice = 00.00;
 
         /// buildMenu();
-        for (Map.Entry<String,Product> item: this.snackChoices.entrySet()){
 
-            quantityRemaining = item.getValue().getQuantity();
-            productID = item.getKey();
-            productName = item.getValue().getName();
-            productPrice = item.getValue().getPrice();
+            for (Map.Entry<String, Product> item : this.snackChoices.entrySet()) {
 
-            System.out.printf("%s %s %s %s $%,.2f  %s %d\n", productID, " - ", productName, " - ",  productPrice, " -  Quantity Remaining:", quantityRemaining );
-        }
+                quantityRemaining = item.getValue().getQuantity();
+                productID = item.getKey();
+                productName = item.getValue().getName();
+                productPrice = item.getValue().getPrice();
+
+                System.out.printf("%s %s %s %s $%,.2f  %s %d\n", productID, " - ", productName, " - ", productPrice, " -  Quantity Remaining:", quantityRemaining);
+            }
+
     }
 //
 //    public void dispense(String selectProductIDButtonPushed) throws FileNotFoundException {
