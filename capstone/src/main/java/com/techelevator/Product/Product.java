@@ -10,8 +10,11 @@ public abstract  class Product  {
         this.price = price;
 
     }
-    public void reduceQuantity(){
-       this.quantity--;
+    public void reduceQuantity() {
+
+        if (quantity > 0) {
+            this.quantity--;
+        }
     }
 
     public String getName() {

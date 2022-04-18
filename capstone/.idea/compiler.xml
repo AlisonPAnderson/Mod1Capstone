@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="m1-java-capstone-vending-machine" options="" />
+      <module name="m1-java-capstone-vending-machine" options="--add-exports jdk.internal.vm.ci/jdk.vm.ci.aarch64=ALL-UNNAMED" />
     </option>
   </component>
 </project>

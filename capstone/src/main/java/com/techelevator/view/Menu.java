@@ -1,9 +1,11 @@
 package com.techelevator.view;
 
+import com.techelevator.VendingMachineFunctions;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
+
 
 public class Menu {
 
@@ -17,8 +19,32 @@ public class Menu {
 
 	public Object getChoiceFromOptions(Object[] options) {
 		Object choice = null;
+
 		while (choice == null) {
 			displayMenuOptions(options);
+			System.out.print(System.lineSeparator() + "Please choose an option >>> ");
+			choice = getChoiceFromUserInput(options);
+		}
+
+		return choice;
+	}
+	public Object getChoiceFromOptionsPurchase(Object[] options) {
+		Object choice = null;
+
+		while (choice == null) {
+			displayPurchaseMenuOptions(options);
+			System.out.print(System.lineSeparator() + "Please choose an option >>> ");
+			choice = getChoiceFromUserInput(options);
+		}
+		return choice;
+	}
+
+	public Object getChoiceFromOptionsFeedMoney(Object[] options) {
+		Object choice = null;
+
+		while (choice == null) {
+			displayFeedMoneyMenuOptions(options);
+			System.out.print(System.lineSeparator() + "Please choose an option >>> ");
 			choice = getChoiceFromUserInput(options);
 		}
 		return choice;
@@ -29,7 +55,7 @@ public class Menu {
 		String userInput = in.nextLine();
 		try {
 			int selectedOption = Integer.valueOf(userInput);
-			if (selectedOption > 0 && selectedOption <= options.length) {
+			if (selectedOption > 0 && selectedOption <= (options.length)) {
 				choice = options[selectedOption - 1];
 			}
 		} catch (NumberFormatException e) {
@@ -44,10 +70,43 @@ public class Menu {
 	private void displayMenuOptions(Object[] options) {
 		out.println();
 		for (int i = 0; i < options.length; i++) {
+
 			int optionNum = i + 1;
-			out.println(optionNum + ") " + options[i]);
+			if (optionNum < 4) {
+				out.println(optionNum + ") " + options[i]);
+			} else if (optionNum == 4) {
+				out.println("   ");
+			}
+
+			out.flush();
 		}
-		out.print(System.lineSeparator() + "Please choose an option >>> ");
-		out.flush();
 	}
+
+	private void displayPurchaseMenuOptions(Object[] options) {
+		out.println();
+		for (int i = 0; i < options.length; i++) {
+
+			int optionNum = i + 1;
+
+				out.println(optionNum + ") " + options[i]);
+
+
+			out.flush();
+		}
+	}
+
+	private void displayFeedMoneyMenuOptions(Object[] options) {
+		out.println();
+		for (int i = 0; i < options.length; i++) {
+
+			int optionNum = i + 1;
+
+				out.println(optionNum + ") " + options[i]);
+
+
+			out.flush();
+		}
+	}
+
 }
+

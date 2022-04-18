@@ -3,6 +3,7 @@ import com.techelevator.Product.Product;
 import com.techelevator.Product.ProductGS;
 
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.Map;
 
 public class VendingMachineFunctions {
@@ -11,6 +12,9 @@ public class VendingMachineFunctions {
     private double currentMoneyProvided = 00.00;
     ProductGS productObj = new ProductGS();
     private Map<String, Product> vendingMachineMap = productObj.buildMenu();
+    private int quantity = 0;
+
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
 
 
@@ -31,38 +35,30 @@ public class VendingMachineFunctions {
                 break;
         }
         System.out.printf("%s %.2f%n",   "Your Balance is  $", getCurrentMoneyProvided());
-        ReportsAndLogging.log("FEED MONEY : $" + (double)moneyChoice + "  RUNNING BALANCE : $" + this.getCurrentMoneyProvided());
+        ReportsAndLogging.log("FEED MONEY : $" + df.format((double)moneyChoice) + "  RUNNING BALANCE : $" + df.format(this.getCurrentMoneyProvided()));
     return getCurrentMoneyProvided();
     }
 
-    public String[] selectProduct(String itemChoiceFromUser)  {
-        String logMessage = "";
+    public String selectProduct(String itemChoiceFromUser)  {
         double productPrice = this.vendingMachineMap.get(itemChoiceFromUser).getPrice();
-        //String productPriceString = String.valueOf(productPrice);
-        //String productType = this.vendingMachineMap.get(itemChoiceFromUser).getClass().getSimpleName();
-        //String productName = this.vendingMachineMap.get(itemChoiceFromUser).getName();
-        //String productID = itemChoiceFromUser;
-        String[] customerItemChoice = new String[4];
+        double customerBalance = this.getCurrentMoneyProvided();
+        String productName = this.vendingMachineMap.get(itemChoiceFromUser).getName();;
+        String productType = this.vendingMachineMap.get(itemChoiceFromUser).getClass().getSimpleName();
+        String productSound = this.vendingMachineMap.get(itemChoiceFromUser).sound();
+
+        String logMessage = "";
 
         if (!(this.vendingMachineMap.containsKey(itemChoiceFromUser))) {
+
             System.out.println("We're sorry, " + itemChoiceFromUser + " is not a valid item ID");
         } else {
-            if (!(this.getCurrentMoneyProvided() >= productObj.getItemPrice())) {
-                System.out.println("We're sorry, insufficent funds for this purchase.  Please insert more cash.");
-            } else if (!(this.vendingMachineMap.get(itemChoiceFromUser).getQuantity() >= 1)) {
-                System.out.println("We're sorry, insufficent stock for this purchase.  Please choose another item.");
-            } else {
-                String productID = itemChoiceFromUser;
-                String productName = this.vendingMachineMap.get(itemChoiceFromUser).getName();
-                String productType = this.vendingMachineMap.get(itemChoiceFromUser).getClass().getSimpleName();
-               // String productSound = this.vendingMachineMap.get(itemChoiceFromUser).sound();
-               productPrice = this.vendingMachineMap.get(itemChoiceFromUser).getPrice();
-
-                productID = itemChoiceFromUser;
-                String productSound = this.vendingMachineMap.get(itemChoiceFromUser).sound();
-                String customerBalance = String.valueOf(this.getCurrentMoneyProvided());
-                    logMessage.format("%5s %5s %.2f", itemChoiceFromUser, productName, productPrice  );
-// "" - " + itemChoiceFromUser + "-" + productName + ": $" + productPrice + " ---" ;
+            if ((customerBalance - productPrice) < 0 ) {
+                insufficientFundsMessage();
+            } else if (this.vendingMachineMap.get(itemChoiceFromUser).getQuantity() < 0) {
+                outOfStockMessage();
+            } else  {
+                    logMessage +=  productName + " " + itemChoiceFromUser +    "   $" + df.format(this.getCurrentMoneyProvided());
+                    ReportsAndLogging.logMessageBuilder(itemChoiceFromUser, productName, productPrice);
                     this.vendingMachineMap.get(itemChoiceFromUser).reduceQuantity();
                     this.setCurrentMoneyProvided(this.getCurrentMoneyProvided() - productPrice);
                     this.addToTotalSales(productPrice);
@@ -71,27 +67,41 @@ public class VendingMachineFunctions {
                 "The total for all of your items is: $", this.getTotalSales(),
                 "     Your remaining balance is: $", this.getCurrentMoneyProvided(),
                 "Dispensing the item: ", productName, "- Enjoy your ", productType, productSound);
-                String logMessage2 = "";
-               // logMessage2.format("%5s %5s %.2f", logMessage, "Updated Customer Balance: $", this.getCurrentMoneyProvided());
-                ReportsAndLogging.log( logMessage + "  Updated Customer Balance: $" + this.getCurrentMoneyProvided());
-               // ReportsAndLogging.log(logMessage + logMessage2);
+
+                ReportsAndLogging.log( logMessage + "  Updated Customer Balance: $" +df.format(this.getCurrentMoneyProvided()));
             }
         }
-        return customerItemChoice;
+        return productType;
     }
 
     public void finishTransaction() {
-        String change = "" + this.getCurrentMoneyProvided();
+        String change = "" + df.format(this.getCurrentMoneyProvided());
+
 
         if(!(this.getCurrentMoneyProvided()>=0.05)) {
-            System.out.println("We're sorry, insufficent funds.");
+            System.out.println("We're sorry, insufficient funds.");
         } else {
             Currency my = new Currency();
             my.getChangeInCoins(this.getCurrentMoneyProvided());
             this.setBalanceToZero();
             System.out.println("Thank you for your business!");
-            ReportsAndLogging.log("GIVE CHANGE: $" + change + " $" + this.getCurrentMoneyProvided());
+
+            ReportsAndLogging.log("GIVE CHANGE: $" + change + "  RUNNING BALANCE: $" + df.format(this.getCurrentMoneyProvided()));
         }
+    }
+
+    public void printSalesReports(){
+        ReportsAndLogging.getSalesReports(this.getVendingMachineMap(),this.getTotalSales());
+    }
+
+    private void insufficientFundsMessage() {
+        System.out.printf("%s %s  %.2f  %s %s",  "\nWe're sorry, you have insufficient funds for this purchase.\n",
+        "Your balance is $",getCurrentMoneyProvided(),  " Please insert more cash.  \n \n",
+        ".  .  .  \n\nReturning to the Purchase Menu:\n");
+    }
+
+    private void outOfStockMessage() {
+        System.out.println("We're sorry, insufficient stock for this purchase.  Please choose another item.");
     }
 
     public void setBalanceToZero() {

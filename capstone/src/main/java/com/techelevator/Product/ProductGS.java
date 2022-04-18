@@ -15,7 +15,7 @@ public class ProductGS {
     //private Map<String,Product> snackChoices;
     Map<String, Product> snackChoices = new TreeMap<>();
     int line=0;
-    private List<Product> productsList;
+    private List<Product> productsList = new ArrayList<>();
     private double itemPrice = 00.00;
     String productName = "";
     String productType = "";
@@ -25,7 +25,7 @@ public class ProductGS {
 
     public Map<String,Product> buildMenu()  {
         // this.snackChoices =new TreeMap<>();
-        this.productsList=new ArrayList<>();
+        //this.productsList=new ArrayList<>();
         File inputFile = new File(fileName);
 
         try(Scanner input=new Scanner(inputFile)){

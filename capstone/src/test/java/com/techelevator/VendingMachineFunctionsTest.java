@@ -20,8 +20,6 @@ public class VendingMachineFunctionsTest {
         Assertions.assertEquals(15.00, customerMoney);
     }
 
-
-
     @Test
     void assertBuyingProductReducesCustomerBalance() {
         VendingMachineFunctions vTest = new VendingMachineFunctions();
@@ -32,10 +30,28 @@ public class VendingMachineFunctionsTest {
         Assertions.assertEquals(1.95, customerMoney, 0.001);
     }
 
-
     @Test
     void selectProductTest() {
         VendingMachineFunctions vTest = new VendingMachineFunctions();
-        vTest.selectProduct("A1");
+        String productType = "";
+
+        //vTest.selectProduct("A1");
+        productType = vTest.selectProduct("A1");
+        Assertions.assertEquals("Chip", productType);
+
+        productType = vTest.selectProduct("A1");
+        Assertions.assertNotEquals("Drink", productType);
+    }
+
+    @Test
+    void finishTransactionSetsBalanceToZero() {
+        VendingMachineFunctions vTest = new VendingMachineFunctions();
+        double customerBalance = 5.00;
+
+        vTest.finishTransaction();
+
+        customerBalance = vTest.getCurrentMoneyProvided();
+
+        Assertions.assertEquals(0.00, customerBalance);
     }
 }

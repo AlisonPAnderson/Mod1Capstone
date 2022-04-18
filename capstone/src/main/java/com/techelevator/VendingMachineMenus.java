@@ -4,6 +4,8 @@ import com.techelevator.Product.ProductGS;
 import com.techelevator.view.Menu;
 
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -12,7 +14,9 @@ public class VendingMachineMenus {
     private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
     private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
     private static final String MAIN_MENU_EXIT = "Exiting, Thank you.";
-    private static final String[] MAIN_MENU_OPTIONS = {MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_EXIT};
+    private static final String MAIN_MENU_REPORTS = "generate reports.";
+
+    private static final String[] MAIN_MENU_OPTIONS = {MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_EXIT,MAIN_MENU_REPORTS};
     //private static final String hiddenChoice = "4";
 
     private static final String PURCHASE_MENU_FEED_MONEY = "Feed Money";
@@ -36,6 +40,7 @@ public class VendingMachineMenus {
     VendingMachineFunctions v1 = new VendingMachineFunctions();
     ProductGS productGS = new ProductGS();
     Scanner input = new Scanner(System.in);
+    //PrintStream out = new PrintStream();
 
     public VendingMachineMenus(Menu menu) {
         this.menu = menu;
@@ -54,13 +59,15 @@ public class VendingMachineMenus {
                 displayPurchaseMenu();
             } else if (choice.equals(MAIN_MENU_EXIT)) {
                 System.exit(0);
+            } else if (choice.equals(MAIN_MENU_REPORTS)) {
+              v1.printSalesReports();
             }
         }
     }
     public void feedMoney()  {
 
         while (true) {
-            String feedMenu = (String) menu.getChoiceFromOptions(FEED_MONEY_OPTIONS);
+            String feedMenu = (String) menu.getChoiceFromOptionsFeedMoney(FEED_MONEY_OPTIONS);
             if (feedMenu.equals(ONE_DOLLAR)) {
                 v1.addToCustomerAccount(1);
             } else if (feedMenu.equals(FIVE_DOLLARS)) {
@@ -75,8 +82,9 @@ public class VendingMachineMenus {
     }
 
     public void displayPurchaseMenu()  {
+
         while (true) {
-            String purchaseMenu = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
+            String purchaseMenu = (String) menu.getChoiceFromOptionsPurchase(PURCHASE_MENU_OPTIONS);
             if (purchaseMenu.equals(PURCHASE_MENU_FEED_MONEY)) {
                 feedMoney();
             } else if (purchaseMenu.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
@@ -88,11 +96,24 @@ public class VendingMachineMenus {
             } else if (purchaseMenu.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
                 v1.finishTransaction();
                 run();
+                v1.printSalesReports();
             } else if (purchaseMenu.equals(RETURN_TO_MAIN_MENU)) {
                 run();
             }
         }
+        //return purchaseMenu;
     }
+
+    public void VendingMachineMenus (InputStream in, PrintStream out) {
+        Scanner scanner = new Scanner(System.in);
+        //this.out =  out;
+    }
+
+    public String menuUserInput (String message) {
+
+        return message;
+    }
+
 
 }
 

@@ -24,6 +24,8 @@ public class Currency {
         numberOfNickels = (int) (roundingBalance / NICKEL);
         roundingBalance = Double.parseDouble(rounding.format(roundingBalance % NICKEL));
 
+        System.out.println("Your Change: "+ numberOfQuarters + " Quarter(s), "+ numberOfDimes + " Dime(s), "+numberOfNickels+" Nickel(s).");
+
         return roundingBalance;
     }
 

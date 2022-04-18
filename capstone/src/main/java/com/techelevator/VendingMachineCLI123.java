@@ -37,9 +37,9 @@ public class VendingMachineCLI123 {
 
       Menu menu = new Menu(System.in, System.out);
         VendingMachineMenus runMainMenu = new VendingMachineMenus(menu);
-      //  VendingMachineCLI123 cli = new VendingMachineCLI123(menu);
+
         runMainMenu.run();
-       // cli.run();
+
     }
 }
 
