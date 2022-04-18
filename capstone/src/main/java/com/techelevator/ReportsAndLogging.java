@@ -17,6 +17,7 @@ public class ReportsAndLogging {
         File searchLogFile = new File(logFile);
         try (PrintWriter exceptionLog = new PrintWriter(new FileOutputStream(searchLogFile, true))){
             exceptionLog.println(getTimeForLog()+" "+ message);
+            //exceptionLog.printf("%10s, %5s, %5s, %5s, %5s, %5.2f, %5s, %5s, %5.2f", getTimeForLog(), message);
         } catch (FileNotFoundException e) {
             System.out.println(e + "An error has occurred (ReportsAndLogging class)");
         }

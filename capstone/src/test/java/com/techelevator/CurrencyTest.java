@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class CurrencyTest {
+public class CurrencyTest{
 
 
     @Test

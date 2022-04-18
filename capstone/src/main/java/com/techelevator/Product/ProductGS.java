@@ -9,12 +9,17 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 public class ProductGS {
+    String[] lineAsArray;
     private String fileName = "C:\\Users\\Alison\\Desktop\\MeritAmerica\\repos\\PairProgramming\\Capstone\\module-1" +
             "-capstone\\capstone\\vendingmachine.csv";
     //private Map<String,Product> snackChoices;
     Map<String, Product> snackChoices = new TreeMap<>();
     int line=0;
     private List<Product> productsList;
+    private double itemPrice = 00.00;
+    String productName = "";
+    String productType = "";
+    String productID = "";
 
 
 
@@ -27,7 +32,7 @@ public class ProductGS {
             while (input.hasNextLine()){  /// take each line from the input file,then split it
 
                 String lineFromFile= input.nextLine();
-                String[] lineAsArray = lineFromFile.split(Pattern.quote("|"));
+                lineAsArray = lineFromFile.split(Pattern.quote("|"));
 
                 String productID = lineAsArray[0];    // variables to store the data - avoid confusion
                 String productName = lineAsArray[1];
@@ -85,7 +90,41 @@ public class ProductGS {
             }
 
     }
-//
+
+    public double getItemPrice() {
+        return itemPrice;
+    }
+
+    public void setItemPrice(double itemPrice) {
+        this.itemPrice = itemPrice;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+// TODO G/S lineAsArray
+
+    //
 //    public void dispense(String selectProductIDButtonPushed) throws FileNotFoundException {
 //        buildMenu();
 //        quantityRemaining = buildMenu().getValue().getQuantity();
